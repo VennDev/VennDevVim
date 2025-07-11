@@ -11,6 +11,13 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+  buffer = bufnr,
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
 local lazy_config = require "configs.lazy"
 
 -- load plugins

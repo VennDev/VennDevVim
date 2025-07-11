@@ -7,6 +7,12 @@ vim.lsp.enable(servers)
 
 local lspconfig = require("lspconfig")
 
+lspconfig.pyright.setup {
+  on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.buf.format()')
+  end,
+}
+
 lspconfig.intelephense.setup {
   on_attach = on_attach,
   capabilities = capabilities,

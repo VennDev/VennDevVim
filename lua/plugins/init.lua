@@ -67,6 +67,13 @@ return {
     lazy = false,
   },
 
+  {
+    "github/copilot.vim",
+    lazy = false,
+    config = function()
+    end,
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
