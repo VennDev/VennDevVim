@@ -2,16 +2,16 @@ require("nvchad.configs.lspconfig").defaults()
 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local capabilities = require("nvchad.configs.lspconfig").capabilities
-local servers = { "html", "cssls", "gopls" }
-vim.lsp.enable(servers)
-
 local lspconfig = require("lspconfig")
 
-lspconfig.pyright.setup {
-  on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, 'formatexpr', 'v:lua.vim.lsp.buf.format()')
-  end,
-}
+local servers = { "html", "cssls", "gopls", "ts_ls" }
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
 
 lspconfig.intelephense.setup {
   on_attach = on_attach,
@@ -23,6 +23,17 @@ lspconfig.intelephense.setup {
 }
 
 lspconfig.pyright.setup {
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("Format", { clear = true }),
+        buffer = bufnr,
+        callback = function() vim.lsp.buf.format({ async = false }) end,
+      })
+    end
+  end,
+  capabilities = capabilities,
   settings = {
     python = {
       pythonPath = "C:/Users/VennDev/.conda/envs/AI/python.exe",
@@ -35,4 +46,11 @@ lspconfig.pyright.setup {
   },
 }
 
--- read :h vim.lsp.config for changing options of lsp servers 
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = {"*.jsx"},
+  command = "setlocal filetype=javascriptreact"
+})
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = {"*.tsx"},
+  command = "setlocal filetype=typescript.tsx"
+})
