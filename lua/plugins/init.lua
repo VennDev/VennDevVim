@@ -82,6 +82,12 @@ return {
     end,
   },
 
+  {
+    'vyfor/cord.nvim',
+    build = ':Cord update',
+    -- opts = {}
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 

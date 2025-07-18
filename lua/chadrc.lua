@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = "solarized_osaka",
 	transparency = true,
 
 	-- hl_override = {
@@ -53,7 +53,7 @@ M.ui = {
   statusline = {
     show_mode = false,
     theme = "vscode_colored",
-    separator_style = "onedark",
+    separator_style = "osaka",
     overriden_modules = function()
       local st_modules = require "nvchad_ui.statusline.default"
       return {
