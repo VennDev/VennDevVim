@@ -119,6 +119,13 @@ return {
     cmd = "FloatermToggle",
   },          
 
+  { 
+    'gen740/SmoothCursor.nvim',
+    config = function()
+      require('smoothcursor').setup()
+    end
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
