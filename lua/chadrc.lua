@@ -52,8 +52,8 @@ M.plugins = {
 M.ui = {
   statusline = {
     show_mode = false,
-    theme = "vscode_colored",
-    separator_style = "osaka",
+    theme = "default",
+    separator_style = "arrow",
     overriden_modules = function()
       local st_modules = require "nvchad_ui.statusline.default"
       return {

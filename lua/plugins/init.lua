@@ -88,6 +88,37 @@ return {
     -- opts = {}
   },
 
+  { "nvzone/volt", lazy = true },
+
+  {
+    "nvzone/minty",
+    cmd = { "Shades", "Huefy" },
+  },
+
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
+  },
+
+  {
+    "nvzone/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+        timeout = 1,
+        maxkeys = 5,
+        -- more opts
+    }
+  },
+
+  {
+    "nvzone/floaterm",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = "FloatermToggle",
+  },          
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
